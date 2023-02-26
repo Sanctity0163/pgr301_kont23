@@ -49,6 +49,8 @@ Jeg kunne ikke finne spesifikt hvor man setter opp andre personer som også må 
 
 ## Del 3 docker - oppg2
 
+For å bygge et Docker image fra Dockerfile skriver man `docker build -t bakemyday:latest .` i samme mappe man har Dockerfilen.
+
 Beskriv hva sensor må gjøre for å få workflowen til å fungere i sin egen GitHub-konto:
 
 Docker hub token:
