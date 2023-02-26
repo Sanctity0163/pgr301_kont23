@@ -19,6 +19,8 @@ Når sensor evaluerer oppgaven vil han/hun se på
 ## Evaluering
 
 
+
+
 * Del 1 Prinsipper - 30 poeng
 * Del 2 GitHub actions - 30 poeng
 * Del 3 Docker - 40 poeng
