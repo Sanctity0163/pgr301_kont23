@@ -1,93 +1,76 @@
-# Konteeksamen  - PGR301
-
-# Scenario
-
-Du har fått en idé du selv mener er veldig god - et API som lager tilfeldige kakeoppskrifter basert på en rekke ingredienser. Etter en liten helg med koding har du det som ligger i dette repositoryet. Fordi du er helt sikker på at dette kommer til å slå an på et globalt nivå, tenker du det er best å starte med god DevOps praksis fra starten av.
-
-## Krav til leveransen
-
-* Eksamensoppgaven er gitt på GitHub repository ; https://github.com/pgr301-2022/konte-2022
-* Du skal ikke lage en fork av dette repositoryet, men kopiere innholdet til et nytt. Årsaken er at sensor vil lage en fork av ditt repo, og arbeidsflyten blir lettere hvis ditt repo ikke er en fork.
-* Du kan jobbe i et public-, eller privat repo, og deretter gjøre det public noen timer etter innleveringsfrist hvis du er bekymret for plagiat fra medstudenter.
-
-Når sensor evaluerer oppgaven vil han/hun se på
-
-* Ditt repository og "Actions" fanen i GutHub for å bekrefte at Workflows faktisk virker
-* Vurdere drøftelsesoppgavene. Du må lage en  "Readme" for besvarelsen i ditt repo.
-* Sensor vil Lage en fork av ditt repo og tester ut pipelines med egen Docker hub/github bruker.
-
-## Evaluering
-
-
-* Del 1 Prinsipper - 30 poeng
-* Del 2 GitHub actions - 30 poeng
-* Del 3 Docker - 40 poeng
-
-# Om applikasjonen 
-
-Du kan start applikasjonen lokalt ved å kjøre
-
-```shell
-mvn spring-boot:run
-```
-
-Og deretter åpne en nettleser med for eksempel - http://localhost:8080/cake-ingredients?numberOfIngredients=23
+# Konteeksamen PGR301
+## Kandidatnr: 1001
 
 ## Del 1 - Prinsipper
 
-Forklar hvordan et større utviklingsteam kan samarbeide om videreutvikling av denne applikasjonen 
-med tanke på:
-
 * Kontinuerlig integrasjon - hva mener vi med dette, og hvorfor er dette viktig?
+
+Kontinuerlig integrasjon (CI) er prosessen ved kontinuerlig og automatisk bygging, testing og integrering av endringer i kode i et delt repository så ofte som mulig. Dette bidrar til å sikre at ny kode er kompatibel med den eksisterende kodebasen og hjelper til med å oppdage og fikse integrasjonsproblemer/bugs tidlig i utviklingsprosessen. Ved å oppdage problemer tidlig er det lettere å fikse dem, og kvaliteten på koden som skrives forbedres. Et større utviklingsteam kan samarbeide om denne prosessen ved å sikre at alle kodeendringer blir pushet til det delte repositoriet ofte og at tester automatiseres og kjøres hver gang en kodeendring blir pushet. Dette bidrar til å opprettholde en kodebase av høy kvalitet og minimere risikoen for at problemer oppstår under integrasjonsprosessen.
+
+
+
 * Kontinuerlige leveranser - hva mener vi med dette og hvorfor er det viktig?
 
-Når applikasjonen er i drift, ønsker du å ha god innsikt i både forretningsmessige og tekniske aspekter ved 
-applikasjonen. Eksempler; antall brukere, antall oppskrifter generert - men også respontider, feilrater, CPU og minnebrukt osv   
+Kontinuerlig levering (CD) er prosessen ved å automatisk pushe kodeendringer til produksjon eller andre lignende miljøer så snart de går gjennom integrasjonsprosessen uten feil. Dette inkluderer automatisert testing og distribusjon, som reduserer risikoen for å introdusere nye problemer i produksjonsmiljøet. Ved å automatisere distribusjonsprosessen kan større team distribuere kodeendringer oftere, noe som fører til en raskere tid til markedet og redusert risiko for distribusjonsfeil. Et større utviklingsteam kan samarbeide om denne prosessen ved å sikre at distribusjonen av ny kode er automatisert og testet, og at endringer automatisk distribueres til produksjon eller andre lignende miljøer så snart de er klare og fungerer med resten av kodebasen uten feil.
+
 
 * Forklar hvorfor det er enklere å få denne innsikten når man adopterer DevOps, i forhold til Vannfall og et skille mellom drift- og utviklingsteam.
-* Forklar hvordand du kan implementere en løsning basert på tjenester i Amazon Webservices for å få denne oversikten. Hva må du konfigurere i AWS, og hva må du gjøre i applikasjonen?
 
-## Del 2 - GitHub actions 
+DevOps legger vekt på samarbeid og kommunikasjon mellom ulike team, inkludert utvikling, drift og testing, gjennom hele utviklingen av prosjektet. Dette bidrar til å sikre at problemer oppdages og løses tidlig, og reduserer risikoen for feil i produksjonen. I motsetning til dette skiller Vannfall kodere fra andre team og foretrekker en lineær, sekvensiell prosess. Dette kan gjøre det vanskeligere å oppdage og fikse problemer tidlig og kan føre til lengre utviklingsperioder. I DevOps jobber teamene sammen for å sikre at kode leveres raskt og med høy kvalitet, noe som gjør det enklere å samle innsikt om både de tekniske og de forretningsmessige aspektene ved applikasjonen.
 
-### Oppgave 1 - GitHub actions workflow
+* Forklar hvordan du kan implementere en løsning basert på tjenester i Amazon Webservices for å få denne oversikten. Hva må du konfigurere i AWS, og hva må du gjøre i applikasjonen?
 
-Lag en GitHub actions workflow som gjør følgende for hver pull request som lages i ditt repository:
+AWS tilbyr flere tjenester for overvåking og analyse av applikasjoner. For å få innsikt i en applikasjon kan man bruke AWS CloudWatch til å overvåke applikasjonens ytelse, inkludert responstid, feilfrekvens, CPU-bruk og minnebruk. CloudWatch kan også varsle personer basert på regler man setter opp, som igjen hjelper teamet å få varsling snarest om noe krever deres oppmerksomhet. For å bruke CloudWatch, må teamet konfigurere tjenesten for å samle inn data fra applikasjonen deres, noe som krever å legge til kode i applikasjonen for å samle inn og rapportere det. I tillegg kan man bruke AWS X-Ray til å spore forespørsler gjennom applikasjonen og identifisere i applikasjonen ytelsen er mangelfull. For å bruke X-Ray, må man inkludere X-Ray SDK i applikasjonen sin og konfigurere X-Ray daemon til å motta data fra applikasjonen. Totalt sett tilbyr AWS flere gode verktøy som kan hjelpe team med å samle verdifull innsikt om både de tekniske og forretningsmessige aspektene ved applikasjonen deres, noe som gjør det enklere å overvåke og forbedre applikasjonens ytelse og bruk.
 
-* Kompilerer koden
-* Kjører enhetstester
 
-### Oppgave 2
+## Del 2 - oppg2
 
 Beskriv med ord eller skjermbilder hvordan man kan konfigurere GitHub på en slik måte at 
 
-* Det ikke er mulig å merge en Pull Request inn i main branch, uten at koden kompilerer og enhetstester er kjørt uten feil.
-* Minst en annen person i teamet har godkjent endringen 
+ Det ikke er mulig å merge en Pull Request inn i main branch, uten at koden kompilerer og enhetstester er kjørt uten feil.
 
-## Del 3 Docker 
+- Gå til settings på repositoriet du ønsker å gjøre dette på
+- Velg "Branches" i menyen på venstre side
+- Under "Branch protection rules", trykk på "Add rule"
+- Under "Branch name pattern", skriv inn "main"
+- Kryss av boksen for "Require status checks to pass before merging"
+- Under "Status checks found in the last week for this repository" velg den testen du ønsker kjørt (f.eks. "Java CI with Maven")
+- Kryss av boksen for "Require branches to be up to date before merging"
+- Trykk på "Create" for å lagre og du er ferdig
 
-I denne oppgaven trenger du en konto på Docker Hub https://hub.docker.com/
+Minst en annen person i teamet har godkjent endringen
 
-### Oppgave 1 
+Jeg kunne ikke finne spesifikt hvor man setter opp andre personer som også må godkjenne, men her er noe lignende:
 
-Skriv en multi stage ```Dockerfile``` for Java-applikasjonen, slik at kompileringen og byggingen kjører i selvstendige Docker containere.
+- Følg steg over inn til "Branches"
+- Nå trykk "edit" på regelen du nettopp har laget
+- Kryss av "Require conversation resolution before merging". Dette gjør at alle kommentarer på requesten må være resolved før den kan merges inn i branchen som er beskyttet.
 
-### Oppgave 2 - Docker hub
 
-Lag en GitHub actions workflow som bygger et container image og pusher det til din Docker 
-hub konto hver gang noen pusher en tag til repositoryet. 
+## Del 3 docker - oppg2
 
-For eksempel skal kommandoene under, når det gjøres mot ditt GitHub Repository resultere i et nytt container image med tag 1.0.0 i Docker Hub
+Beskriv hva sensor må gjøre for å få workflowen til å fungere i sin egen GitHub-konto:
 
-```sh
-git tag 1.0.0
-git push --tags
-```
+Docker hub token:
+- Logg inn på din Docker Hub bruker 
+- Trykk på brukernavnet ditt, og velg "Account settings"
+- Trykk på "Security"
+- Under "access tokens" trykk på "new access token"
+- Gi den nye token et navn og gi full tilgang
+- Trykk på "Create" for å lage ny token
+- Kopier ned denne token
 
-Beskriv hva sensor må gjøre for å få workflowen til å fungere i sin egen GitHub-konto.
+Ny github action workflow
+- Lag en ny fil i samme mappe som maven workflow (.github/workflows/build-and-push.yml)
+- Kopier koden fra min fil
 
-### Oppgave 3 
+Filen jeg har laget har secrets. Sette opp secrets:
+- Trykk på settings inne på repositoriet ditt
+- Så trykk på secrets
+- Lag to nye repository secrets - "DOCKER_USERNAME" og "DOCKER_PASSWORD"
+- DOCKER_USERNAME skal være ditt brukernavn på Docker Hub
+- DOCKER_PASSWORD skal være access token vi hentet tidligere
 
-Test din egen workflow, slik at du får minst ett container image i din Docker Hub konto.
-* Hvilken docker kommando kan sensor bruke for å laste ned og starte ditt container image fra docker hub? Applikasjonen skal være tilgjengelig på http://localhost:9999 etter oppstart 
+Med innstillingene fra min fil, mer spesifikt under "on", så vil denne action kjøre hver gang noen pusher til repositoriet.
 
-Fullfør ```docker ..```
+Jeg fikk ikke til at denne action linker riktig med Docker Hub da jeg ikke fant riktige versjoner for java version eller maven version som Docker Hub aksepterer.
